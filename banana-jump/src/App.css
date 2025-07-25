@@ -1,0 +1,55 @@
+body,
+#root,
+.banana-app {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: "Press Start 2P", "Arial", monospace;
+  background: linear-gradient(180deg, #70c1ff 0%, #fff 100%);
+}
+
+.banana-jump-animation {
+  position: absolute;
+  top: 40vh;
+  left: -300px;
+  width: 300px;
+  height: 180px;
+  animation: nyan-move 4s linear infinite;
+  z-index: 2;
+}
+.banana-jump-animation img {
+  width: 100%;
+  height: auto;
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes banana-move {
+  0% {
+    left: -300px;
+  }
+  100% {
+    left: 100vw;
+  }
+}
+
+.counter {
+  position: absolute;
+  bottom: 50px;
+  left: 0;
+  width: 100vw;
+  text-align: center;
+  font-size: 2.2rem;
+  font-family: "Press Start 2P", "Arial", monospace;
+  color: #343a50;
+  text-shadow: 0 2px 8px #fff, 0 0px 12px #6ac2fa;
+  z-index: 10;
+  letter-spacing: 1px;
+  user-select: none;
+}
+
+/* 글꼴 import */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
