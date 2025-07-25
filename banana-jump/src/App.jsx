@@ -7,12 +7,13 @@ import Loader from "./components/Loader";
 import ThemeSelector from "./components/ThemeSelector";
 import InfoShare from "./components/InfoShare";
 import "./styles/App.css";
+import images from './components/CharacterImages'; // 추가
 
 const CHARACTER_LIST = [
-  { name: "Banana", emoji: "🍌", src: "/src/assets/banana.gif", glow: "#ffe04a", colors: ["#ffe04a30", "#fffbd910", "#ffec8f13"] },
-  { name: "Strawberry", emoji: "🍓", src: "/src/assets/strawberry.gif", glow: "#ff658c", colors: ["#ff658c26", "#ffe6fa18", "#ff9da728"] },
-  { name: "Apple", emoji: "🍏", src: "/src/assets/apple.gif", glow: "#7de45d", colors: ["#bbf78426", "#a7e4a718", "#e4ffea1a"] },
-  { name: "Orange", emoji: "🍊", src: "/src/assets/orange.gif", glow: "#ffbe55", colors: ["#ffbe5530", "#ffe1a110", "#fff7d30a"] },
+  { name: "Banana", emoji: "🍌", src: images.banana, glow: "#ffe04a", colors: ["#ffe04a30", "#fffbd910", "#ffec8f13"] },
+  { name: "Strawberry", emoji: "🍓", src: images.strawberry, glow: "#ff658c", colors: ["#ff658c26", "#ffe6fa18", "#ff9da728"] },
+  { name: "Apple", emoji: "🍏", src: images.apple, glow: "#7de45d", colors: ["#bbf78426", "#a7e4a718", "#e4ffea1a"] },
+  { name: "Orange", emoji: "🍊", src: images.orange, glow: "#ffbe55", colors: ["#ffbe5530", "#ffe1a110", "#fff7d30a"] },
 ];
 
 export default function App() {
