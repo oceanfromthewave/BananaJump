@@ -28,12 +28,28 @@ export default function InfoShare({ onClose }) {
     modalRef.current?.focus();
   }, []);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setShowToast(true);
+const handleCopy = () => {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(window.location.href)
+      .then(() => setShowToast(true))
+      .catch(() => alert("복사 실패!"));
     setTimeout(() => setShowToast(false), 1200);
-  };
-
+  } else {
+    // fallback: 임시 input/select/copy (오래된 브라우저 지원)
+    try {
+      const tempInput = document.createElement("input");
+      tempInput.value = window.location.href;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 1200);
+    } catch {
+      alert("복사 기능을 지원하지 않는 브라우저입니다.");
+    }
+  }
+};
   return (
     <div className={styles.infoModalBg} tabIndex={-1} style={{ cursor: "auto" }}>
       <div
