@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Quicksand:wght@700&display=swap");
 
-
 :global {
   body,
   #root {
@@ -29,7 +28,6 @@ h1, h2, h3,
   letter-spacing: 1.4px;
 }
 
-
 .glassCounter,
 h1, h2, h3, .counterClick {
   font-size: 2.1rem;
@@ -45,7 +43,6 @@ h1, h2, h3, .counterClick {
   overflow: hidden;
   font-family: "Montserrat", "Quicksand", Arial, sans-serif;
   position: relative;
-  // ✨ 어두운 느낌으로 리디자인 (주황+보라+블루 계열)
   background: 
     radial-gradient(circle at 13% 18%, #3c2648 0%, #2c1743 38%, transparent 60%),
     radial-gradient(circle at 89% 82%, #6b4789 0%, #11222233 48%, transparent 75%),
@@ -55,10 +52,8 @@ h1, h2, h3, .counterClick {
 
 .animatedBlobBg {
   position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
   z-index: 0;
   pointer-events: none;
   background: radial-gradient(
@@ -72,21 +67,11 @@ h1, h2, h3, .counterClick {
 }
 
 @keyframes blobMove {
-  0% {
-    border-radius: 55% 45% 48% 52% / 47% 52% 48% 53%;
-    transform: scale(1) translateY(0);
-  }
-  50% {
-    border-radius: 62% 38% 54% 46% / 39% 66% 34% 61%;
-    transform: scale(1.18) translateY(-22px);
-  }
-  100% {
-    border-radius: 55% 45% 48% 52% / 47% 52% 48% 53%;
-    transform: scale(1) translateY(0);
-  }
+  0% { border-radius: 55% 45% 48% 52% / 47% 52% 48% 53%; transform: scale(1) translateY(0);}
+  50% { border-radius: 62% 38% 54% 46% / 39% 66% 34% 61%; transform: scale(1.18) translateY(-22px);}
+  100% { border-radius: 55% 45% 48% 52% / 47% 52% 48% 53%; transform: scale(1) translateY(0);}
 }
 
-/* 상단바 + 반응형 완벽 대응 */
 .topBar {
   position: fixed;
   top: 18px;
@@ -97,196 +82,277 @@ h1, h2, h3, .counterClick {
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  // infoBtn은 이제 topBar에서 분리
 }
+
 .themeSelectorWrap {
-  pointer-events: auto;
-}
-
-.infoBtnFixed {
-  pointer-events: auto;
-  background: #fff7;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 0 2px 10px #ffe04a33;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  transition: 0.15s;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  filter: drop-shadow(0 0 7px #ffe04a22);
-  position: fixed;
-  top: 18px;
-  right: 18px;
-  z-index: 100;
-
-  &:hover {
-    background: #fff;
-  }
-  svg {
-    width: 30px;
-    height: 30px;
-  }
+  gap: 0.13em; // gap 줄임 (중요)
+  pointer-events: auto;
+  background: rgba(255,255,255,0.15);
+  box-shadow: 0 0 16px #fff3, 0 0 2px #fff2;
+  border-radius: 2em;
+  padding: 0.15em 0.26em;
+  overflow: visible;
 }
-
 
 .infoBtn {
-  pointer-events: auto;
-  background: #fff7;
+  background: #fff8;   // 배경 투명도 높임
   border: none;
   border-radius: 50%;
-  box-shadow: 0 2px 10px #ffe04a33;
-  width: 40px;
-  height: 40px;
+  box-shadow: 0 2px 10px #ffe04a22;
+  width: 32px;
+  height: 32px;
+  margin-left: 0.14em;  // gap 대신 margin-left로 살짝만 띄움
   cursor: pointer;
-  margin-left: 1.6rem;
-  transition: 0.15s;
+  transition: background 0.15s, box-shadow 0.16s;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 0 7px #ffe04a22);
-  position: relative;
+  filter: drop-shadow(0 0 5px #ffe04a19);
   z-index: 30;
-
-  &:hover {
-    background: #fff;
-  }
-
-  svg {
-    width: 30px;
-    height: 30px;
-  }
+  &:hover { background: #fff; box-shadow: 0 0 12px #ffe04a44; }
+  svg { width: 28px; height: 28px; }
 }
 
-
-/* 모바일: infoBtn만 오른쪽 위에 항상 고정, ThemeSelector는 중앙에 */
 @media (max-width: 800px) {
-  .topBar {
-    justify-content: center;
-    padding: 0 0.1em;
-    gap: 0.1em;
-  }
-  .infoBtnFixed {
-    right: 8px;
-    top: 8px;
-    width: 34px;
-    height: 34px;
-  }
+  .themeSelectorWrap { gap: 0.08em; padding: 0.09em 0.13em;}
+  .infoBtn { width: 27px; height: 27px; margin-left: 0.08em; }
 }
-
 @media (max-width: 480px) {
-  .topBar {
-    padding: 0 0.1em;
-    gap: 0.1em;
-  }
-  .infoBtnFixed {
-    right: 5px;
-    top: 6px;
-    width: 28px;
-    height: 28px;
-  }
+  .themeSelectorWrap { gap: 0.02em; padding: 0.06em 0.10em;}
+  .infoBtn { width: 22px; height: 22px; margin-left: 0.06em; }
 }
 
-/* 메인 컨텐츠 (상단바랑 절대 겹치지 않게) */
+/* 메인 컨텐츠 */
 .contentCenter {
-  width: 100vw;
-  min-height: 65vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 9;
+  width: 100vw; min-height: 65vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; z-index: 9;
   transition: opacity 0.7s;
-  padding-top: 110px; /* 상단바와 겹치지 않게! */
+  padding-top: 110px;
 }
-@media (max-width: 800px) {
-  .contentCenter {
-    padding-top: 62px;
-  }
-}
-@media (max-width: 480px) {
-  .contentCenter {
-    padding-top: 45px;
-  }
-}
+@media (max-width: 800px) { .contentCenter { padding-top: 62px; } }
+@media (max-width: 480px) { .contentCenter { padding-top: 45px; } }
 
+/* ★ 핵심수정: counterClick 한줄고정 및 모바일 대응 */
 .glassCounter {
   font-family: 'Press Start 2P', "Quicksand", "Montserrat", Arial, sans-serif;
   font-size: 2.1rem;
   color: #232e46e0;
   text-shadow: 0 1px 12px #fffdfab0, 0 0 5px #ffd45faa;
-  /* background: rgba(255, 255, 255, 0.39); 👈 이 줄 완전히 삭제! */
-  background: none !important; /* ✨ 배경 완전 제거 */
-  border-radius: 1.5em; /* 필요 없으면 이것도 지워도 됨 */
-  /* box-shadow: 0 2px 22px #ffd45f33; 👈 이것도 지우자 */
+  background: none !important;
+  border-radius: 1.5em;
   box-shadow: none !important;
   padding: 1rem 2.4rem;
-  display: flex;
-  align-items: center;
+  display: flex; 
+  align-items: center; 
   gap: 1.1rem;
-  /* backdrop-filter: blur(15px) brightness(1.12); 👈 이것도 필요 없음 */
-  font-weight: 700;
-  letter-spacing: 1.2px;
-  margin-bottom: 0.7rem;
-  min-width: 290px;
-  position: relative;
-  z-index: 20;
+  font-weight: 700; letter-spacing: 1.2px;
+  margin-bottom: 0.7rem; min-width: 290px;
+  position: relative; z-index: 20;
 
-  .emoji {
-    font-size: 1.5em;
-  }
-
-  .sec {
-    color: #ffbe1b;
-    font-family: "Press Start 2P", "Montserrat", monospace;
-    font-size: 2.5rem;
-    padding: 0 0.07em;
-  }
+  .emoji { font-size: 1.5em; }
+  .sec { color: #ffbe1b; font-size: 2.5rem; padding: 0 0.07em;}
 
   .counterClick {
+    display: inline-flex !important; // 한줄
+    align-items: center;
+    gap: 0.23em;
     font-size: 1.2rem;
     margin-left: 1.2em;
-    display: flex;
-    align-items: center;
-    gap: 0.3em;
     font-weight: 700;
-
+    white-space: nowrap;      // ← 줄바꿈 강제 차단
+    flex-shrink: 0;
+    min-width: 0;             // flex overflow 막기
     svg {
       vertical-align: middle;
       margin-bottom: 2px;
+      flex-shrink: 0;
+      width: 1.1em; height: 1.1em;
+    }
+    span {
+      display: inline; // 숫자도 한 줄에
+      min-width: 1ch;
     }
   }
 }
-
 @media (max-width: 800px) {
-  .glassCounter {
-    font-size: 1.06rem;
-    min-width: 150px;
-    padding: 0.57rem 0.7rem;
-  }
-  .infoBtn {
-    width: 35px;
-    height: 35px;
-    margin-left: 1.2rem;
+  .glassCounter { 
+    font-size: 1.04rem; 
+    min-width: 120px; 
+    padding: 0.52rem 0.41rem;
+    .counterClick { font-size: 0.99rem; margin-left: 0.55em; gap: 0.15em; }
+    .sec { font-size: 1.55rem; }
   }
 }
 @media (max-width: 480px) {
   .glassCounter {
-    font-size: 0.99rem;
-    padding: 0.35rem 0.01rem;
+    font-size: 0.98rem; 
+    padding: 0.28rem 0.01rem; 
     border-radius: 0.9em;
-    min-width: 110px;
-    max-width: 96vw;
-    word-break: break-all;
+    min-width: 88px; max-width: 96vw; word-break: keep-all; // 세로 줄바꿈 방지
+    gap: 0.38em;
+    .sec { font-size: 1.23rem; }
+    .counterClick {
+      font-size: 0.89rem;
+      margin-left: 0.21em;
+      gap: 0.07em;
+      white-space: nowrap;
+      min-width: 0;
+    }
   }
-  .infoBtn {
-    width: 29px;
-    height: 29px;
-    font-size: 0.91em;
-    border-radius: 1em;
-    margin: 0.2em 0 0 0;
-  }
+}
+
+/* --- 이하 이펙트/기타 생략부분 원본 그대로 --- */
+
+@keyframes screen-shake {
+  0% { transform: translate(0, 0);}
+  20% { transform: translate(-5px, -2px);}
+  40% { transform: translate(6px, 2px);}
+  60% { transform: translate(-3px, 6px);}
+  80% { transform: translate(4px, -4px);}
+  100% { transform: translate(0, 0);}
+}
+@keyframes shake-btn {
+  0% { transform: translateY(0);}
+  22% { transform: translateY(-5px);}
+  55% { transform: translateY(5px);}
+  100% { transform: translateY(0);}
+}
+.screenShake {
+  animation: screen-shake 0.38s cubic-bezier(.5,2.6,.3,1.2);
+}
+
+.invert {
+  filter: invert(1) hue-rotate(150deg) saturate(2.1);
+  transition: filter 0.22s;
+}
+
+.rainBanana {
+  position: fixed;
+  top: -56px;
+  z-index: 80;
+  font-size: 2.2rem;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.86;
+  filter: drop-shadow(0 4px 13px #ffe04a88);
+  animation: rain-banana 1.8s cubic-bezier(.6,1.2,.34,1) forwards;
+}
+@keyframes rain-banana {
+  0% { top: -56px; opacity: 0.6;}
+  15% { opacity: 1;}
+  90% { top: 86vh; opacity: 1;}
+  100% { top: 102vh; opacity: 0;}
+}
+.bananaText {
+  position: fixed;
+  left: 50%; top: 52%;
+  transform: translate(-50%,-50%) scale(1.18);
+  font-size: 2.6rem;
+  font-family: 'Press Start 2P', 'Montserrat', monospace;
+  color: #ffe04a;
+  text-shadow: 0 4px 24px #232e46cc, 0 0 10px #ffdf3f;
+  letter-spacing: 0.15em;
+  z-index: 500;
+  animation: banana-shout 0.92s cubic-bezier(.41,1.41,.18,1.18);
+  pointer-events: none;
+}
+@keyframes banana-shout {
+  0% { opacity: 0; transform: translate(-50%,-50%) scale(0.8);}
+  14% { opacity: 1; transform: translate(-50%,-50%) scale(1.21);}
+  77% { opacity: 1; transform: translate(-50%,-50%) scale(1.16);}
+  100% { opacity: 0; transform: translate(-50%,-50%) scale(1.31);}
+}
+.randomMsg {
+  position: fixed;
+  bottom: 8vh; left: 50%; transform: translateX(-50%);
+  font-family: 'Montserrat', monospace;
+  font-size: 1.14rem;
+  background: #ffe04aee; color: #232e46;
+  padding: 0.38em 1.4em;
+  border-radius: 1.8em;
+  box-shadow: 0 2px 13px #232e4622;
+  z-index: 350; opacity: 0.97;
+  pointer-events: none;
+  animation: pop-msg 1.45s cubic-bezier(.37,1.65,.36,1.14);
+}
+@keyframes pop-msg {
+  0% { opacity: 0; transform: translateX(-50%) scale(0.92);}
+  8% { opacity: 1; }
+  85% { opacity: 1;}
+  100% { opacity: 0; transform: translateX(-50%) scale(1.09);}
+}
+
+.flash {
+  animation: bg-flash 0.28s linear;
+}
+@keyframes bg-flash {
+  0%   { background: #fff700 !important; }
+  60%  { background: #fff700 !important; }
+  100% { background: unset; }
+}
+.chaos {
+  transition: all 0.14s;
+  animation: chaos-bounce 0.21s infinite alternate;
+  filter: hue-rotate(70deg) brightness(1.13) contrast(1.15);
+}
+@keyframes chaos-bounce {
+  0% { filter: hue-rotate(0deg) brightness(1.13) contrast(1.15);}
+  100% { filter: hue-rotate(200deg) brightness(1.23) contrast(1.18);}
+}
+
+.blackholeWrap {
+  pointer-events: none;
+  position: fixed;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  z-index: 500;
+}
+.spaceBanana {
+  position: absolute;
+  opacity: 0.95;
+  animation: space-spin 1.13s cubic-bezier(.36,1.25,.42,1.07);
+}
+@keyframes space-spin {
+  0% { opacity: 0; transform: scale(0.85);}
+  20% { opacity: 1;}
+  55% { opacity: 1;}
+  100% { opacity: 0; transform: scale(0.21);}
+}
+.blackhole {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  width: 76px; height: 76px;
+  background: radial-gradient(circle, #151316 55%, #24232e 90%, #0000 100%);
+  border-radius: 50%;
+  z-index: 5;
+  box-shadow: 0 0 44px #0009, 0 0 23px #ffe04a33;
+  animation: spin-bh 1.16s linear;
+}
+@keyframes spin-bh {
+  0% { transform: translate(-50%,-50%) rotate(0);}
+  100% { transform: translate(-50%,-50%) rotate(1turn);}
+}
+
+.doNotClickBtn {
+  position: fixed;
+  right: 11vw; bottom: 13vh;
+  font-size: 1.35rem;
+  font-family: 'Press Start 2P', 'Montserrat', cursive;
+  color: #fff;
+  background: #fa2727;
+  border: none;
+  padding: 0.6em 1.4em;
+  border-radius: 2em;
+  box-shadow: 0 4px 22px #fa272777, 0 1px 8px #fff5;
+  z-index: 900;
+  cursor: pointer;
+  animation: blink-btn 1.08s infinite alternate;
+}
+@keyframes blink-btn {
+  0% { background: #fa2727; filter: brightness(1);}
+  85% { background: #fa2727;}
+  100% { background: #ffe04a; filter: brightness(1.13);}
 }

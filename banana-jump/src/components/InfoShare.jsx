@@ -68,7 +68,7 @@ const handleCopy = () => {
           바나나가 점프합니다<br />
           바나나 클릭도 가능해요<br />
           <span style={{ fontSize: "0.95em", color: "#b99" }}>
-            바나나는 바보입니다.
+            바나나는 멍청합니다.
           </span>
         </p>
         <div className={styles.shareBtns}>
