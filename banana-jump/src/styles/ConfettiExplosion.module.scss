@@ -1,0 +1,16 @@
+.confettiExplosion {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  pointer-events: none;
+}
+
+.confettiParticle {
+  will-change: transform, opacity;
+  filter: drop-shadow(0 1px 8px #fffde899) blur(0.4px);
+  text-shadow: 0 1px 12px #fffbe899;
+  opacity: 0.95;
+}

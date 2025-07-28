@@ -6,9 +6,10 @@ import Achievements from "./components/Achievements";
 import Loader from "./components/Loader";
 import ThemeSelector from "./components/ThemeSelector";
 import InfoShare from "./components/InfoShare";
+import ConfettiExplosion from "./components/ConfettiExplosion";
 import "./styles/App.css";
 import styles from "./styles/App.module.scss";
-import images from './utils/CharacterImages'; //
+import images from './utils/CharacterImages';
 
 const CHARACTER_LIST = [
   { name: "Banana", emoji: "🍌", src: images.banana, glow: "#ffe04a", colors: ["#ffe04a30", "#fffbd910", "#ffec8f13"] },
@@ -23,28 +24,40 @@ export default function App() {
   const [showConfetti, setShowConfetti] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
 
+  const [confettiAchievements, setConfettiAchievements] = useState({});
+
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
     const interval = setInterval(() => setSeconds(s => s + 1), 1000);
     return () => clearInterval(interval);
   }, []);
 
-  // 2초마다 바나나 점프
   useEffect(() => {
     const jumpInterval = setInterval(() => {
       setShouldJump(true);
-      setTimeout(() => setShouldJump(false), 600); // 점프 애니메이션 지속시간
+      setTimeout(() => setShouldJump(false), 600);
     }, 2000);
     return () => clearInterval(jumpInterval);
   }, []);
 
-  // 업적 달성시 confetti
   useEffect(() => {
-    if ([10, 30, 60, 100].includes(clicks) || [10, 30, 60, 120].includes(seconds)) {
+    const secondsAchievements = [10, 30, 60, 120];
+    const clicksAchievements = [10, 30, 60, 100];
+    let didShow = false;
+    if (secondsAchievements.includes(seconds) && !confettiAchievements[`sec${seconds}`]) {
       setShowConfetti(true);
+      setConfettiAchievements(prev => ({ ...prev, [`sec${seconds}`]: true }));
+      didShow = true;
+    }
+    if (clicksAchievements.includes(clicks) && !confettiAchievements[`click${clicks}`]) {
+      setShowConfetti(true);
+      setConfettiAchievements(prev => ({ ...prev, [`click${clicks}`]: true }));
+      didShow = true;
+    }
+    if (didShow) {
       setTimeout(() => setShowConfetti(false), 1700);
     }
-  }, [clicks, seconds]);
+  }, [clicks, seconds, confettiAchievements]);
 
   const currentChar = CHARACTER_LIST[themeIdx];
 
@@ -58,21 +71,34 @@ export default function App() {
         "--pal-3": currentChar.colors[2],
       }}
     >
+      {showConfetti && <ConfettiExplosion />}
       <Cursor theme={currentChar} />
       <ParticleBG theme={currentChar} />
       <div className={styles.animatedBlobBg} />
       {loading && <Loader />}
-      <div className={styles.topBar}>
-        {/* 바나나만 있으므로 테마 선택기 숨김 */}
-        <ThemeSelector
-          characterList={CHARACTER_LIST}
-          themeIdx={themeIdx}
-          setThemeIdx={setThemeIdx}
-        />
-        <button className={styles.infoBtn} onClick={() => setShowInfo(true)} aria-label="Info / Share">
-          <svg width="30" height="30" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#fff6" /><path d="M16 12v8M16 8v2" stroke="#444" strokeWidth="2.3" strokeLinecap="round"/></svg>
-        </button>
-      </div>
+
+      {/* 상단 테마 선택 바 */}
+<div className={styles.topBar}>
+  <div className={styles.themeSelectorWrap}>
+    <ThemeSelector
+      characterList={CHARACTER_LIST}
+      themeIdx={themeIdx}
+      setThemeIdx={setThemeIdx}
+    />
+  </div>
+<button
+  className={styles.infoBtn}
+  onClick={() => setShowInfo(true)}
+  aria-label="Info / Share"
+>
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+    <circle cx="16" cy="16" r="15" fill="#fffbe9" stroke="#ffe04a" strokeWidth="2"/>
+    <circle cx="16" cy="11" r="1.7" fill="#ffe04a" stroke="#232e46" strokeWidth="1.2"/>
+    <rect x="14.4" y="15" width="3.2" height="8" rx="1.5" fill="#ffe04a" stroke="#232e46" strokeWidth="1.2"/>
+    <rect x="14.9" y="19.5" width="2.2" height="1.7" rx="0.7" fill="#fffbe9" />
+  </svg>
+</button>
+</div>        
       <div className={styles.contentCenter} style={{ opacity: loading ? 0 : 1 }}>
         <Character
           key={currentChar.name}
@@ -80,7 +106,7 @@ export default function App() {
           glow={currentChar.glow}
           emoji={currentChar.emoji}
           onClick={() => setClicks((c) => c + 1)}
-          showConfetti={showConfetti}
+          showConfetti={false}
           shouldJump={shouldJump}
         />
         <div className={styles.glassCounter}>
@@ -88,10 +114,13 @@ export default function App() {
             {currentChar.emoji}
           </span>
           <span>
-         <b>{currentChar.name.toUpperCase()}</b> Jump <span className={styles.sec}>{seconds}</span> 초!
+            <b>{currentChar.name.toUpperCase()}</b>  <span className={styles.sec}>{seconds}</span> seconds!
           </span>
           <span className={styles.counterClick}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 13V7C7 4.79086 8.79086 3 11 3V3C13.2091 3 15 4.79086 15 7V13" stroke="#232e46" strokeWidth="2" /><circle cx="12" cy="17" r="3" fill="#ffe04a" stroke="#e5a500" strokeWidth="2" /></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2v10m0 0l3-3m-3 3l-3-3" stroke="#232e46" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="12" cy="19" r="3" fill="#ffe04a" stroke="#e5a500" strokeWidth="2"/>
+            </svg>
             {clicks}
           </span>
         </div>

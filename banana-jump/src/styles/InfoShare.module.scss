@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   animation: infoFadeIn 0.18s;
+  cursor: auto;
 }
 
 @keyframes infoFadeIn {
@@ -29,6 +30,7 @@
   min-width: 320px;
   max-width: 96vw;
   position: relative;
+  cursor: auto;
   font-family: "Montserrat", "Quicksand", Arial, sans-serif;
   backdrop-filter: blur(22px) brightness(1.11);
   animation: badgePop 0.9s cubic-bezier(0.16, 2, 0.35, 1);
@@ -107,6 +109,32 @@
   }
 }
 
+.toastCopy {
+  position: absolute;
+  left: 50%;
+  top: -30px;
+  transform: translateX(-50%);
+  background: #ffe04aee;
+  color: #232e46;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 1em;
+  padding: 0.42em 1.25em;
+  box-shadow: 0 2px 14px #ffd54f66;
+  opacity: 0.96;
+  pointer-events: none;
+  z-index: 999;
+  animation: toastPop 1.2s cubic-bezier(0.39,1.9,0.35,1.05);
+}
+
+@keyframes toastPop {
+  0% { opacity: 0; transform: translateX(-50%) scale(0.7);}
+  16% { opacity: 1; transform: translateX(-50%) scale(1.13);}
+  35% { opacity: 1; transform: translateX(-50%) scale(0.99);}
+  92% { opacity: 1;}
+  100% { opacity: 0; transform: translateX(-50%) scale(0.93);}
+}
+
 // 모바일 반응형
 @media (max-width: 800px) {
   .glassModal {
@@ -135,3 +163,4 @@
     }
   }
 }
+

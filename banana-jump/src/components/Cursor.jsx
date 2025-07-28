@@ -8,23 +8,20 @@ export default function Cursor({ theme }) {
   useEffect(() => {
     const handleMouseMove = (e) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
-      
-      // 랜덤하게 별 생성
-      if (Math.random() < 0.05) {
+
+      if (Math.random() < 0.06) {
         const newStar = {
-          x: e.clientX + (Math.random() - 0.5) * 30,
-          y: e.clientY + (Math.random() - 0.5) * 30,
+          x: e.clientX + (Math.random() - 0.5) * 36,
+          y: e.clientY + (Math.random() - 0.5) * 36,
           id: Date.now() + Math.random(),
+          size: Math.random() * 7 + 6, // 6~13px
         };
-        setStars(prev => [...prev, newStar]);
-        
-        // 1초 후 별 제거
+        setStars((prev) => [...prev, newStar]);
         setTimeout(() => {
-          setStars(prev => prev.filter(star => star.id !== newStar.id));
-        }, 1000);
+          setStars((prev) => prev.filter((star) => star.id !== newStar.id));
+        }, 1100);
       }
     };
-
     document.addEventListener("mousemove", handleMouseMove);
     return () => document.removeEventListener("mousemove", handleMouseMove);
   }, []);
@@ -36,8 +33,8 @@ export default function Cursor({ theme }) {
         style={{
           left: cursorPos.x,
           top: cursorPos.y,
-          background: theme?.glow || "#ffe04a",
-          boxShadow: `0 0 12px ${theme?.glow || "#ffe04a"}70`,
+          background: `radial-gradient(circle at 60% 40%, #ffe7fcff 60%, ${theme?.glow || "#ffe04a"} 100%)`,
+          boxShadow: `0 0 18px 4px ${theme?.glow || "#ffe04a"}66, 0 0 4px 2px #fffbe733`,
         }}
       />
       <div
@@ -45,7 +42,7 @@ export default function Cursor({ theme }) {
         style={{
           left: cursorPos.x,
           top: cursorPos.y,
-          background: `${theme?.glow || "#ffe04a"}88`,
+          background: `radial-gradient(circle, ${theme?.glow || "#ffe04a"}88 0%, transparent 80%)`,
         }}
       />
       {stars.map((star) => (
@@ -55,7 +52,11 @@ export default function Cursor({ theme }) {
           style={{
             left: star.x,
             top: star.y,
-            background: theme?.glow || "#ffe04a",
+            width: star.size,
+            height: star.size,
+            background: `radial-gradient(circle at 40% 60%, #fffbe7 40%, ${theme?.glow || "#ffe04a"} 100%)`,
+            boxShadow: `0 0 10px 0 ${theme?.glow || "#ffe04a"}44`,
+            filter: `blur(${star.size > 10 ? 2 : 0.7}px)`,
           }}
         />
       ))}

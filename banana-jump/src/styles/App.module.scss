@@ -1,6 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Quicksand:wght@700&display=swap");
 
-// 전역 초기화 스타일들은 별도로 관리하되, 컴포넌트별 스타일은 모듈화
+
 :global {
   body,
   #root {
@@ -10,15 +11,29 @@
     height: 100vh;
     min-height: 100vh;
     overflow: hidden;
-    font-family: "Montserrat", "Quicksand", Arial, sans-serif;
+    font-family: 'Press Start 2P', 'Montserrat', 'Quicksand', Arial, sans-serif;
     background: none;
     cursor: none;
   }
-
   ::-webkit-scrollbar {
     width: 0;
     background: transparent;
   }
+}
+
+.glassCounter,
+.glassCounter .sec,
+h1, h2, h3,
+.counterClick {
+  font-family: 'Press Start 2P', 'Montserrat', 'Quicksand', Arial, sans-serif !important;
+  letter-spacing: 1.4px;
+}
+
+
+.glassCounter,
+h1, h2, h3, .counterClick {
+  font-size: 2.1rem;
+  color: #232e46e0;
 }
 
 .superBg {
@@ -29,23 +44,13 @@
   min-height: 100vh;
   overflow: hidden;
   font-family: "Montserrat", "Quicksand", Arial, sans-serif;
-  background: none;
-  cursor: none;
   position: relative;
-  background: radial-gradient(
-      circle at 12% 18%,
-      var(--pal-2, #fffde6) 0%,
-      #fceabb33 28%,
-      transparent 57%
-    ),
-    radial-gradient(
-      circle at 88% 80%,
-      var(--pal-3, #ffe3fa88) 0%,
-      #bdf6ff22 38%,
-      transparent 70%
-    ),
-    linear-gradient(120deg, #f7e6ff 0%, var(--pal-1, #a3d9ff) 51%, #fff4d2 100%);
-  background-blend-mode: screen;
+  // ✨ 어두운 느낌으로 리디자인 (주황+보라+블루 계열)
+  background: 
+    radial-gradient(circle at 13% 18%, #3c2648 0%, #2c1743 38%, transparent 60%),
+    radial-gradient(circle at 89% 82%, #6b4789 0%, #11222233 48%, transparent 75%),
+    linear-gradient(120deg, #191933 0%, #2c256b 56%, #181826 100%);
+  background-blend-mode: screen, lighten;
 }
 
 .animatedBlobBg {
@@ -81,19 +86,54 @@
   }
 }
 
+/* 상단바 + 반응형 완벽 대응 */
 .topBar {
   position: fixed;
-  top: 20px;
+  top: 18px;
   left: 0;
   width: 100vw;
   z-index: 25;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.4rem;
+  pointer-events: none;
+  // infoBtn은 이제 topBar에서 분리
+}
+.themeSelectorWrap {
+  pointer-events: auto;
 }
 
+.infoBtnFixed {
+  pointer-events: auto;
+  background: #fff7;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px #ffe04a33;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 7px #ffe04a22);
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 100;
+
+  &:hover {
+    background: #fff;
+  }
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+
 .infoBtn {
+  pointer-events: auto;
   background: #fff7;
   border: none;
   border-radius: 50%;
@@ -107,6 +147,8 @@
   align-items: center;
   justify-content: center;
   filter: drop-shadow(0 0 7px #ffe04a22);
+  position: relative;
+  z-index: 30;
 
   &:hover {
     background: #fff;
@@ -118,6 +160,36 @@
   }
 }
 
+
+/* 모바일: infoBtn만 오른쪽 위에 항상 고정, ThemeSelector는 중앙에 */
+@media (max-width: 800px) {
+  .topBar {
+    justify-content: center;
+    padding: 0 0.1em;
+    gap: 0.1em;
+  }
+  .infoBtnFixed {
+    right: 8px;
+    top: 8px;
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topBar {
+    padding: 0 0.1em;
+    gap: 0.1em;
+  }
+  .infoBtnFixed {
+    right: 5px;
+    top: 6px;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* 메인 컨텐츠 (상단바랑 절대 겹치지 않게) */
 .contentCenter {
   width: 100vw;
   min-height: 65vh;
@@ -128,21 +200,34 @@
   position: relative;
   z-index: 9;
   transition: opacity 0.7s;
+  padding-top: 110px; /* 상단바와 겹치지 않게! */
+}
+@media (max-width: 800px) {
+  .contentCenter {
+    padding-top: 62px;
+  }
+}
+@media (max-width: 480px) {
+  .contentCenter {
+    padding-top: 45px;
+  }
 }
 
 .glassCounter {
-  font-family: "Quicksand", "Montserrat", Arial, sans-serif;
+  font-family: 'Press Start 2P', "Quicksand", "Montserrat", Arial, sans-serif;
   font-size: 2.1rem;
   color: #232e46e0;
   text-shadow: 0 1px 12px #fffdfab0, 0 0 5px #ffd45faa;
-  background: rgba(255, 255, 255, 0.39);
-  border-radius: 1.5em;
-  box-shadow: 0 2px 22px #ffd45f33;
+  /* background: rgba(255, 255, 255, 0.39); 👈 이 줄 완전히 삭제! */
+  background: none !important; /* ✨ 배경 완전 제거 */
+  border-radius: 1.5em; /* 필요 없으면 이것도 지워도 됨 */
+  /* box-shadow: 0 2px 22px #ffd45f33; 👈 이것도 지우자 */
+  box-shadow: none !important;
   padding: 1rem 2.4rem;
   display: flex;
   align-items: center;
   gap: 1.1rem;
-  backdrop-filter: blur(15px) brightness(1.12);
+  /* backdrop-filter: blur(15px) brightness(1.12); 👈 이것도 필요 없음 */
   font-weight: 700;
   letter-spacing: 1.2px;
   margin-bottom: 0.7rem;
@@ -156,7 +241,7 @@
 
   .sec {
     color: #ffbe1b;
-    font-family: "Montserrat", "Press Start 2P", monospace;
+    font-family: "Press Start 2P", "Montserrat", monospace;
     font-size: 2.5rem;
     padding: 0 0.07em;
   }
@@ -176,36 +261,19 @@
   }
 }
 
-// 모바일 반응형
 @media (max-width: 800px) {
   .glassCounter {
     font-size: 1.06rem;
     min-width: 150px;
     padding: 0.57rem 0.7rem;
   }
-
   .infoBtn {
     width: 35px;
     height: 35px;
     margin-left: 1.2rem;
   }
 }
-
 @media (max-width: 480px) {
-  .superBg {
-    min-width: 100vw !important;
-    min-height: 100vh !important;
-    padding: 0 !important;
-  }
-
-  .topBar {
-    flex-direction: column;
-    gap: 0.4em;
-    padding: 0.3em 0.5em;
-    align-items: flex-start;
-    margin-bottom: 0.1em;
-  }
-
   .glassCounter {
     font-size: 0.99rem;
     padding: 0.35rem 0.01rem;
@@ -214,7 +282,6 @@
     max-width: 96vw;
     word-break: break-all;
   }
-
   .infoBtn {
     width: 29px;
     height: 29px;

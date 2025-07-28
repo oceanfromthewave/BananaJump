@@ -1,54 +1,60 @@
 .character3d {
   position: relative;
-  width: 310px;
-  height: 310px;
+  width: 230px;
+  height: 230px;
   margin-bottom: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 28px;
-  filter: drop-shadow(0 14px 44px var(--char-glow, #ffe04a88));
-  animation: char-hover 3s cubic-bezier(.52,.08,.4,1.1) infinite alternate;
-  transition: transform 0.13s cubic-bezier(.43,2,.2,1), filter 0.13s;
+  border-radius: 0;
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
   cursor: pointer;
   outline: none;
+  animation: char-hover 3s cubic-bezier(.52,.08,.4,1.1) infinite alternate;
+  transition: transform 0.13s cubic-bezier(.43,2,.2,1), filter 0.13s;
 }
-.character3d:active { transform: scale(1.13) rotate(-6deg); }
+
 .characterImg {
-  width: 230px;
-  height: 230px;
+  width: 100%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
   object-fit: contain;
-  background: none;
-  border-radius: 32px;
-  box-shadow: 0 8px 42px #ffdc6e80;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: none !important;
+  transform-origin: center center !important;
   z-index: 12;
   user-select: none;
   pointer-events: none;
 }
+
 .characterGlow {
-  position: absolute;
-  width: 270px;
-  height: 270px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--char-glow, #ffe04a55);
-  filter: blur(27px);
-  border-radius: 50%;
-  opacity: 0.6;
-  z-index: 5;
+  display: none;
 }
-.star {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99;
-  filter: blur(0.5px);
-  box-shadow: 0 0 24px 2px #ffe29a99;
-  will-change: transform, opacity;
+.brightOverlay {
+  display: none;
 }
 
-// 클릭 파티클 스타일
+.star {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 130;
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI', 'Arial';
+  filter: blur(0.6px);
+  will-change: transform, opacity, filter;
+  text-shadow:
+    0 1px 8px #fffde899,
+    0 0 3px #ffe04a44;
+  opacity: 0.85;
+}
+
 .clickParticle {
   position: absolute;
   font-size: 24px;
@@ -62,75 +68,20 @@
   animation: sparkle 0.8s ease-out;
 }
 
-@keyframes sparkle {
-  0% {
-    filter: drop-shadow(0 0 8px #ffe04a22) brightness(0.35);
-  }
-  50% {
-    filter: drop-shadow(0 0 16px #ffe04a44) brightness(0.5);
-  }
-  100% {
-    filter: drop-shadow(0 0 4px #ffe04a11) brightness(0.35);
-  }
-}
-
-.brightOverlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  border-radius: 28px;
-  pointer-events: none;
-  z-index: 15;
-  mix-blend-mode: screen;
-  background: rgba(255, 224, 74, 0.004); /* 또는 0.04까지 가능 */
-}
-
 @keyframes char-hover {
-  0% { transform: translateY(0) scale(1) rotate(-6deg);}  
+  0% { transform: translateY(0) scale(1) rotate(-6deg);}
   30% { transform: translateY(-35px) scale(1.05) rotate(8deg);}
   50% { transform: translateY(-52px) scale(1.09) rotate(-6deg);}
   80% { transform: translateY(-22px) scale(1.04) rotate(3deg);}
   100% { transform: translateY(0) scale(1) rotate(7deg);}
 }
 
-// 모바일 반응형 - 더 크게 수정
+// 모바일 반응형
 @media (max-width: 800px) {
-  .character3d {
-    width: 280px !important;
-    height: 280px !important;
-    min-width: 280px !important;
-    min-height: 280px !important;
-  }
-  .characterGlow {
-    width: 240px !important;
-    height: 240px !important;
-  }
-  .characterImg {
-    width: 200px;
-    height: 200px;
-  }
-  .clickParticle {
-    font-size: 20px;
-  }
+  .character3d { width: 180px !important; height: 180px !important; }
+  .characterImg { width: 100%; height: 100%; }
 }
 @media (max-width: 480px) {
-  .character3d {
-    width: 250px !important;
-    height: 250px !important;
-    min-width: 250px !important;
-    min-height: 250px !important;
-  }
-  .characterGlow {
-    width: 210px !important;
-    height: 210px !important;
-  }
-  .characterImg {
-    width: 180px;
-    height: 180px;
-  }
-  .clickParticle {
-    font-size: 18px;
-  }
+  .character3d { width: 140px !important; height: 140px !important; }
+  .characterImg { width: 100%; height: 100%; }
 }

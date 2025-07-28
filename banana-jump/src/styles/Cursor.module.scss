@@ -5,36 +5,51 @@
   z-index: 1000;
   border-radius: 50%;
   transform: translate(-50%, -50%);
+  transition: background 0.25s;
 }
 
 .cursorDot {
-  width: 14px;
-  height: 14px;
-  background: var(--char-glow, #ffe04a);
-  box-shadow: 0 0 12px var(--char-glow, #ffe04a70);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 40%, #fffbe7 60%, #ffe04a 100%);
+  box-shadow: 0 0 18px 4px #ffe04a66, 0 0 4px 2px #fffbe733;
+  border: 1px solid #fffde480;
 }
 
 .cursorHalo {
-  width: 50px;
-  height: 50px;
-  background: var(--char-glow, #ffe04a88);
-  filter: blur(10px);
-  opacity: 0.22;
+  width: 58px;
+  height: 58px;
+  background: radial-gradient(circle, #ffe04a88 0%, transparent 80%);
+  filter: blur(15px);
+  opacity: 0.19;
 }
 
 .cursorStar {
   position: fixed;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  z-index: 1000;
   pointer-events: none;
-  animation: starFade 1s linear forwards;
+  z-index: 1000;
+  border-radius: 50%;
+  animation: sparkleStar 1.1s cubic-bezier(.54,.02,.4,1.1) forwards;
+  opacity: 0.92;
+  box-shadow: 0 0 10px 0 #ffe04a44;
+  will-change: opacity, transform, filter;
 }
 
-@keyframes starFade {
-  to {
+@keyframes sparkleStar {
+  0% {
     opacity: 0;
-    transform: scale(0.4);
+    transform: scale(0.3) rotate(-16deg);
+    filter: blur(3px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.07) rotate(10deg);
+    filter: blur(0.6px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.65) rotate(38deg);
+    filter: blur(2.5px);
   }
 }
