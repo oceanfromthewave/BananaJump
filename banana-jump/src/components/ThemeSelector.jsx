@@ -1,12 +1,13 @@
 import React from "react";
+import styles from "../styles/ThemeSelector.module.scss";
 
 export default function ThemeSelector({ characterList, themeIdx, setThemeIdx }) {
   return (
-    <div className="theme-selector">
+    <div className={styles.themeSelector}>
       {characterList.map((char, idx) => (
         <button
           key={char.name}
-          className={`theme-btn${themeIdx === idx ? " active" : ""}`}
+          className={`${styles.themeBtn}${themeIdx === idx ? " " + styles.active : ""}`}
           style={{
             boxShadow: `0 0 14px 0 ${char.glow}99`,
             background: themeIdx === idx ? "#fff7" : "#fff4"

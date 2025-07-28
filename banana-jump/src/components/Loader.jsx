@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "../styles/Loader.module.scss";
 
 export default function Loader() {
   return (
-    <div className="loader-bg">
-      <div className="loader-circle"></div>
-      <div className="loader-title">LOADING</div>
+    <div className={styles.loaderBg}>
+      <div className={styles.loaderCircle}></div>
+      <div className={styles.loaderTitle}>LOADING</div>
     </div>
   );
 }

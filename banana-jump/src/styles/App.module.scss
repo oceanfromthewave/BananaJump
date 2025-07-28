@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Quicksand:wght@700&display=swap");
+
+// 전역 초기화 스타일들은 별도로 관리하되, 컴포넌트별 스타일은 모듈화
+:global {
+  body,
+  #root {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: "Montserrat", "Quicksand", Arial, sans-serif;
+    background: none;
+    cursor: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+}
+
+.superBg {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: "Montserrat", "Quicksand", Arial, sans-serif;
+  background: none;
+  cursor: none;
+  position: relative;
+  background: radial-gradient(
+      circle at 12% 18%,
+      var(--pal-2, #fffde6) 0%,
+      #fceabb33 28%,
+      transparent 57%
+    ),
+    radial-gradient(
+      circle at 88% 80%,
+      var(--pal-3, #ffe3fa88) 0%,
+      #bdf6ff22 38%,
+      transparent 70%
+    ),
+    linear-gradient(120deg, #f7e6ff 0%, var(--pal-1, #a3d9ff) 51%, #fff4d2 100%);
+  background-blend-mode: screen;
+}
+
+.animatedBlobBg {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 40% 70%,
+    var(--char-glow, #ffe04a99) 0%,
+    #fffbe010 70%
+  );
+  animation: blobMove 13s ease-in-out infinite alternate;
+  filter: blur(45px) saturate(1.15);
+  opacity: 0.55;
+}
+
+@keyframes blobMove {
+  0% {
+    border-radius: 55% 45% 48% 52% / 47% 52% 48% 53%;
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    border-radius: 62% 38% 54% 46% / 39% 66% 34% 61%;
+    transform: scale(1.18) translateY(-22px);
+  }
+  100% {
+    border-radius: 55% 45% 48% 52% / 47% 52% 48% 53%;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.topBar {
+  position: fixed;
+  top: 20px;
+  left: 0;
+  width: 100vw;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+}
+
+.infoBtn {
+  background: #fff7;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 10px #ffe04a33;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  margin-left: 1.6rem;
+  transition: 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 7px #ffe04a22);
+
+  &:hover {
+    background: #fff;
+  }
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.contentCenter {
+  width: 100vw;
+  min-height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 9;
+  transition: opacity 0.7s;
+}
+
+.glassCounter {
+  font-family: "Quicksand", "Montserrat", Arial, sans-serif;
+  font-size: 2.1rem;
+  color: #232e46e0;
+  text-shadow: 0 1px 12px #fffdfab0, 0 0 5px #ffd45faa;
+  background: rgba(255, 255, 255, 0.39);
+  border-radius: 1.5em;
+  box-shadow: 0 2px 22px #ffd45f33;
+  padding: 1rem 2.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  backdrop-filter: blur(15px) brightness(1.12);
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  margin-bottom: 0.7rem;
+  min-width: 290px;
+  position: relative;
+  z-index: 20;
+
+  .emoji {
+    font-size: 1.5em;
+  }
+
+  .sec {
+    color: #ffbe1b;
+    font-family: "Montserrat", "Press Start 2P", monospace;
+    font-size: 2.5rem;
+    padding: 0 0.07em;
+  }
+
+  .counterClick {
+    font-size: 1.2rem;
+    margin-left: 1.2em;
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    font-weight: 700;
+
+    svg {
+      vertical-align: middle;
+      margin-bottom: 2px;
+    }
+  }
+}
+
+// 모바일 반응형
+@media (max-width: 800px) {
+  .glassCounter {
+    font-size: 1.06rem;
+    min-width: 150px;
+    padding: 0.57rem 0.7rem;
+  }
+
+  .infoBtn {
+    width: 35px;
+    height: 35px;
+    margin-left: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .superBg {
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+    padding: 0 !important;
+  }
+
+  .topBar {
+    flex-direction: column;
+    gap: 0.4em;
+    padding: 0.3em 0.5em;
+    align-items: flex-start;
+    margin-bottom: 0.1em;
+  }
+
+  .glassCounter {
+    font-size: 0.99rem;
+    padding: 0.35rem 0.01rem;
+    border-radius: 0.9em;
+    min-width: 110px;
+    max-width: 96vw;
+    word-break: break-all;
+  }
+
+  .infoBtn {
+    width: 29px;
+    height: 29px;
+    font-size: 0.91em;
+    border-radius: 1em;
+    margin: 0.2em 0 0 0;
+  }
+}

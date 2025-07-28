@@ -1,0 +1,137 @@
+.infoModalBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0003;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: infoFadeIn 0.18s;
+}
+
+@keyframes infoFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.glassModal {
+  background: rgba(255, 255, 255, 0.69);
+  border-radius: 2.1em;
+  box-shadow: 0 2px 18px #ffe04a55;
+  padding: 2.2rem 2.3rem;
+  min-width: 320px;
+  max-width: 96vw;
+  position: relative;
+  font-family: "Montserrat", "Quicksand", Arial, sans-serif;
+  backdrop-filter: blur(22px) brightness(1.11);
+  animation: badgePop 0.9s cubic-bezier(0.16, 2, 0.35, 1);
+
+  h2 {
+    margin: 0 0 1rem 0;
+    color: #333;
+    font-size: 1.5rem;
+  }
+
+  p {
+    color: #555;
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+  }
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0.7) rotate(-10deg);
+  }
+  35% {
+    transform: scale(1.3) rotate(7deg);
+  }
+  60% {
+    transform: scale(1.05) rotate(-2deg);
+  }
+  80% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.modalClose {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  position: absolute;
+  right: 1.2rem;
+  top: 1.2rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: 0.14s;
+  color: #333;
+
+  &:hover {
+    opacity: 0.93;
+  }
+}
+
+.shareBtns {
+  margin-top: 1.7em;
+  display: flex;
+  gap: 1.1em;
+  flex-wrap: wrap;
+
+  button,
+  a {
+    font-size: 1.17rem;
+    background: #fff9;
+    border: none;
+    border-radius: 1.2em;
+    padding: 0.5em 1.3em;
+    box-shadow: 0 0 7px #ffe04a33;
+    color: #825;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.14s;
+    font-family: inherit;
+
+    &:hover {
+      background: #ffe04a23;
+    }
+  }
+}
+
+// 모바일 반응형
+@media (max-width: 800px) {
+  .glassModal {
+    padding: 1.8rem 1.6rem;
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glassModal {
+    min-width: 93vw;
+    padding: 1.3rem 1rem;
+
+    h2 {
+      font-size: 1.2rem;
+    }
+  }
+
+  .shareBtns {
+    gap: 0.8em;
+
+    button,
+    a {
+      font-size: 1rem;
+      padding: 0.4em 1em;
+    }
+  }
+}

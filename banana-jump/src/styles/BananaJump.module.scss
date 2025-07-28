@@ -1,0 +1,76 @@
+.bananaJump3d {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  margin: 0 auto 28px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 28px;
+  filter: drop-shadow(0 14px 44px #ffe04a88);
+  animation: banana-hover 3.1s cubic-bezier(.52,.08,.4,1.1) infinite alternate;
+  cursor: pointer;
+  transition: transform 0.13s cubic-bezier(.43,2,.2,1), filter 0.13s;
+}
+
+.bananaImg {
+  width: 190px;
+  height: 190px;
+  object-fit: contain;
+  background: none;
+  border-radius: 32px;
+  box-shadow: 0 8px 42px #ffdc6e80;
+  z-index: 2;
+  user-select: none;
+  pointer-events: none;
+}
+
+.bananaGlow {
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, #ffe04a88 0%, transparent 78%);
+  filter: blur(25px);
+  border-radius: 50%;
+  opacity: 0.56;
+  z-index: 1;
+}
+
+@keyframes banana-hover {
+  0% { transform: translateY(0) scale(1) rotate(-4deg);}
+  30% { transform: translateY(-23px) scale(1.05) rotate(7deg);}
+  50% { transform: translateY(-37px) scale(1.10) rotate(-5deg);}
+  80% { transform: translateY(-13px) scale(1.04) rotate(2deg);}
+  100% { transform: translateY(0) scale(1) rotate(6deg);}
+}
+
+/* 모바일 반응형 */
+@media (max-width: 800px) {
+  .bananaJump3d,
+  .bananaGlow {
+    width: 110px !important;
+    height: 110px !important;
+    min-width: 110px !important;
+    min-height: 110px !important;
+  }
+  .bananaImg {
+    width: 62px;
+    height: 62px;
+  }
+}
+@media (max-width: 480px) {
+  .bananaJump3d,
+  .bananaGlow {
+    width: 61px !important;
+    height: 61px !important;
+    min-width: 61px !important;
+    min-height: 61px !important;
+  }
+  .bananaImg {
+    width: 37px;
+    height: 37px;
+  }
+}

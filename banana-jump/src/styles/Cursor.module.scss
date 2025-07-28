@@ -1,0 +1,40 @@
+.cursorDot,
+.cursorHalo {
+  pointer-events: none;
+  position: fixed;
+  z-index: 1000;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cursorDot {
+  width: 14px;
+  height: 14px;
+  background: var(--char-glow, #ffe04a);
+  box-shadow: 0 0 12px var(--char-glow, #ffe04a70);
+}
+
+.cursorHalo {
+  width: 50px;
+  height: 50px;
+  background: var(--char-glow, #ffe04a88);
+  filter: blur(10px);
+  opacity: 0.22;
+}
+
+.cursorStar {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  z-index: 1000;
+  pointer-events: none;
+  animation: starFade 1s linear forwards;
+}
+
+@keyframes starFade {
+  to {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}

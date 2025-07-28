@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "../styles/Achievements.module.scss";
 
 const ACHS = [
   { label: "⏰ 10 sec", cond: ({ seconds }) => seconds >= 10 },
@@ -11,11 +12,11 @@ const ACHS = [
 
 export default function Achievements({ seconds, clicks }) {
   return (
-    <div className="achievements-bar">
+    <div className={styles.achievementsBar}>
       {ACHS.map(({ label, cond }) => (
         <span
           key={label}
-          className={"achv" + (cond({ seconds, clicks }) ? " on" : "")}
+          className={`${styles.achv}${cond({ seconds, clicks }) ? " " + styles.on : ""}`}
         >
           {label}
         </span>

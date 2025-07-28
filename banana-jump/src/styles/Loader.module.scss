@@ -1,0 +1,64 @@
+.loaderBg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #f6e3ff99;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loaderCircle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 8px solid #ffe04a33;
+  border-top: 8px solid #ffbe1b;
+  animation: loaderSpin 1.1s linear infinite;
+  margin-bottom: 1.7rem;
+}
+
+@keyframes loaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loaderTitle {
+  font-size: 2rem;
+  font-family: "Montserrat", "Quicksand", Arial, sans-serif;
+  color: #aa8cd4;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+// 모바일 반응형
+@media (max-width: 800px) {
+  .loaderCircle {
+    width: 48px;
+    height: 48px;
+    border-width: 6px;
+    margin-bottom: 1.2rem;
+  }
+
+  .loaderTitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .loaderCircle {
+    width: 36px;
+    height: 36px;
+    border-width: 4px;
+    margin-bottom: 1rem;
+  }
+
+  .loaderTitle {
+    font-size: 1.12rem;
+  }
+}
