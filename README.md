@@ -6,40 +6,40 @@
   Banana Jump 🍌
 </h1>
 <p align="center">
-  <b>바보같은 바나나<br/>바나나가 점프도 해요</b>
+  <b>Stupid Banana, Jumping Banana!</b>
   <br /><br />
-  “바나나는 멍청합니다!”
+  “Bananas are dumb!” <br> But they can jump!
 </p>
 
 ---
 
 ## 🚀 Demo
 
-> [🔗 바로가기(Live Demo)](http://jumpbanana.s3-website-ap-southeast-2.amazonaws.com/)
+> [🔗 Live Demo](http://jumpbanana.s3-website-ap-southeast-2.amazonaws.com/)
 
 ---
 
-## ✨ 주요 기능
+## ✨ Features
 
-- 🍌 **클릭 또는 2초마다 자동 점프하는 바나나**
-- 🎉 업적 달성 시 화려한 폭죽/이모지 파티클
-- 🖱️ 커스텀 마우스 커서, 별 파티클
-- 🏆 업적(클릭수/초) UI + 애니메이션
-- 📱 모바일/데스크탑 완벽 대응
-- 🦄 깔끔한 컴포넌트 설계, 미니멀 UI
+- 🍌 **A banana that jumps automatically every 2 seconds or on click**
+- 🎉 Colorful confetti and emoji fireworks for achievements
+- 🖱️ Custom mouse cursor with star particle effects
+- 🏆 Animated achievement UI (time & click count)
+- 📱 Fully responsive for desktop and mobile
+- 🦄 Minimal, modular UI built with React components
 
 ---
 
 ## 💻 Tech Stack
 
 - **React 18+**
-- **Framer Motion** (애니메이션)
-- **SCSS Modules** (모듈화된 스타일)
+- **Framer Motion** (Animation)
+- **SCSS Modules** (Modular styles)
 - Google Fonts: `Press Start 2P` + Montserrat + Quicksand
 
 ---
 
-## 🕹️ 사용 방법
+## 🕹️ Getting Started
 
 ```bash
 git clone https://github.com/oceanfromthewave/BananaJump.git
@@ -47,26 +47,29 @@ cd banana-jump
 npm install
 npm run dev
 ```
-별도의 환경변수(.env) 필요 없음
+---
 
-정적 SPA, 배포도 쉽고 빠름!
+No .env required.<br>
+Just open and play — blazing fast!
 
 ---
 
-🎨 커스텀 가이드
-캐릭터/이모지 추가:
-/utils/CharacterImages.js에서 손쉽게 추가 가능
+🎨 Customization Guide
+Add your own characters/emojis:
+Edit /utils/CharacterImages.js to add more.
 
-파티클/폭죽 커스터마이징:
-ConfettiExplosion.jsx 등에서 이모지/스타일 변경
+Customize particles/confetti:
+Tweak emoji and style in ConfettiExplosion.jsx etc.
 
-글꼴/테마:
-App.module.scss에서 폰트, 컬러, 배경 쉽게 수정
+Change fonts, themes:
+Edit App.module.scss for fonts, colors, backgrounds.
 
 ---
-⭐️ 스타/피드백 환영!
-star⭐️, 이슈/PR, 피드백 모두 환영합니다!<br>
+⭐️ Contribute & Feedback
+If you enjoy Banana Jump, please star ⭐️ the repo!
+Feedback, issues, and PRs are always welcome.
 
-**Thanks! 감사! 아리가또! 셰셰!**
+---
+**Thanks! 고마워요! ありがとう! 谢谢!**
 
-<p align="center"> <img src="https://media.giphy.com/media/IOE7Tgb8MBvJe/giphy.gif" width="150"/> </p> 
+<p align="center"> <img src="https://media.giphy.com/media/IOE7Tgb8MBvJe/giphy.gif" width="150"/> </p>
